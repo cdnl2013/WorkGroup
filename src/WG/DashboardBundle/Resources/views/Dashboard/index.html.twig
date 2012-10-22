@@ -1,0 +1,45 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+    <div class="row-fluid">
+        <div class="span7">
+            <h3>The Wall</h3>
+            {% include "WGDashboardBundle:TheWall:wall.html.twig" %}
+        </div>
+        <div class="span5">
+            <h3>Dernières activités</h3>
+            {% include "WGDashboardBundle:Activities:list_mini.html.twig" %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {#<link rel="stylesheet" href="{{ asset('assets/css/zerobin.css') }}" type="text/css">#}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {#
+    <script type="text/javascript" src="{{ asset('assets/js/sjcl.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/base64.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/rawdeflate.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/rawinflate.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/zerobin.js') }}"></script>
+    #}
+    <script type="text/javascript" src="{{ asset('assets/js/etherpad.js') }}"></script>
+    <script type="text/javascript">
+        $('#wall').pad({
+            'padId':'An9QXnT7O2',
+            'host':'http://typewith.me',
+            'userName':'{{ app.user.username }}',
+            'showChat':false,
+            'showControls':true
+        });
+        {#
+        $(function() {
+            $("#wall").resizable();
+        });
+        #}
+    </script>
+{% endblock %}

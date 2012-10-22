@@ -1,0 +1,46 @@
+<h3>Activités</h3>
+<div class="tags-selected">
+    {% for tag in tags %}
+        <div class="btn-group">
+            <button type="button" class="btn btn-small" href="#"><i class="icon-tag"></i> {{ tag.title }}</button>
+            <button type="button" class="btn btn-small" href="#" onclick="removeSessionTag({{ tag.id }});"><i class="icon-remove"></i></button>
+        </div>
+    {% endfor %}
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th class="type">#</th>
+            <th>Nom</th>
+            <th>Tags</th>
+            <th class="datetime">Modifié le</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for activity in activities %}
+            <tr>
+                <td><i class="{% if activity.type =='file' %}icon-file{% endif %}"></i></td>
+                <td>
+                    {% if activity.type =='file' %}
+                        <a href="{{ path('wg_files_show', {id: activity.id }) }}" class="td-link">
+                            {% if activity.isImage() is defined and activity.isImage() == true %}
+                                <img src="{{ asset(activity.webPath|imageCroper(25,25)) }}" />
+                            {% endif %}
+                            {{ activity.label }}
+                        </a>
+                    {% endif %}
+                </td>
+
+                <td>
+                    {% if activity.tags is defined %}
+                        {% for tag in activity.tags %}
+                            <button class="btn btn-mini tag" type="button" onclick="addSessionTag({{ tag.id }});">{{ tag.title }}</button>
+                        {% endfor %}
+                    {% endif %}
+                </td>
+
+                <td>{{ activity.date|date('d/m/Y H:i') }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

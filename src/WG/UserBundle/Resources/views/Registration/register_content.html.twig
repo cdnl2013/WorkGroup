@@ -1,0 +1,7 @@
+<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+    {{ form_widget(form) }}
+    <div id="register-btns">
+        <input type="submit" value="Valider l'inscription" class="btn btn-primary btn-large"/>
+        <a href="{{ path('wg_homepage') }}" class="btn btn-large">Annuler</a>
+    </div>
+</form>

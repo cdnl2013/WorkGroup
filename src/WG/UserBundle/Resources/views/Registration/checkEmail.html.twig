@@ -1,0 +1,9 @@
+{% extends "::base.html.twig" %}
+
+{% block menu %}
+    <li><a href="{{ path('fos_user_security_login') }}">Connexion</a></li>
+{% endblock %}
+
+{% block body %}
+    <p>{{ 'registration.check_email'|trans({'%email%': user.email}, 'FOSUserBundle') }}</p>
+{% endblock body %}

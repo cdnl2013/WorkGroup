@@ -1,0 +1,15 @@
+wg_homepage:
+    pattern:  /
+    defaults: { _controller: WGDashboardBundle:Dashboard:dashboard }
+
+wg_activities:
+    pattern: /activities/
+    defaults: { _controller: WGDashboardBundle:Dashboard:activities }
+    
+wg_ajax_remove_session_tag:
+    pattern: /ajax/tags/remove/
+    defaults: { _controller: WGDashboardBundle:Dashboard:ajaxRemoveTagFromSession }
+    
+wg_ajax_add_session_tag:
+    pattern: /ajax/tags/add/
+    defaults: { _controller: WGDashboardBundle:Dashboard:ajaxAddTagInSession }

@@ -1,0 +1,3 @@
+wg_ajax_search_tags:
+    pattern:  /ajax/tags/search/
+    defaults: { _controller: WGProjectBundle:Tag:ajaxSearch }

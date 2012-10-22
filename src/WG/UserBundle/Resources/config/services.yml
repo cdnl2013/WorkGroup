@@ -1,0 +1,16 @@
+parameters:
+#    wg_user.example.class: WG\UserBundle\Example
+
+services:
+#    wg_user.example:
+#        class: %wg_user.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+    wg_user.registration.form.type:
+        class: WG\UserBundle\Form\Type\RegistrationFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: wg_user_registration }
+    wg_user.registration.form.handler:
+        class: WG\UserBundle\Form\Handler\RegistrationFormHandler
+        scope: request
+        arguments: [@fos_user.registration.form, @request, @fos_user.user_manager, @fos_user.mailer, @fos_user.util.token_generator]

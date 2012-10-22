@@ -1,0 +1,19 @@
+wg_files:
+    pattern:  /
+    defaults: { _controller: WGFileBundle:File:list }
+
+wg_files_show:
+    pattern:  /show/{id}
+    defaults: { _controller: WGFileBundle:File:show }
+
+wg_files_add_tags:
+    pattern:  /tag/{id}
+    defaults: { _controller: WGFileBundle:File:addTag }
+    
+wg_file_upload:
+    pattern:  /upload/
+    defaults: { _controller: WGFileBundle:File:upload }
+
+wg_file_remove:
+    pattern:  /remove/{id}
+    defaults: { _controller: WGFileBundle:File:remove }

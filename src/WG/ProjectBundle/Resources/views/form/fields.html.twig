@@ -1,0 +1,74 @@
+{% block Tags_widget %}
+{% spaceless %}
+    <div id="{{ id }}">
+        <input type="text" id="input_{{ id }}"/>
+        <div id="{{ id }}_autocmp"></div>
+        <div class="tags-selected">
+            {% for tag in tags %}
+                <span class="btn-group">
+                    {#<input type="hidden" name="form[tags][]" value="'+label+'"/>#}
+                    <button type="button" class="btn btn-small"><i class="icon-tag"></i> {{ tag.title }}</button>
+                    {#<a href="#" class="btn btn-small" onclick="removeThisTag(this);"><i class="icon-remove"></i></a>#}
+                </span>
+            {% endfor %}
+        </div>
+    </div>
+{% endspaceless %}
+<script type="text/javascript">
+    if($('#{{ id }} .tags-selected').children().length == 0){
+        $('#{{ id }} .tags-selected').hide();
+    }
+    function addThisTag(label, id){
+        $('#{{ id }} .tags-selected').append('<span class="btn-group">' +
+            '<input type="hidden" name="form[tags][]" value="'+label+'"/>' +
+            '<button type="button" class="btn btn-small"><i class="icon-tag"></i> '+label+'</button>' +
+            '<button type="button" class="btn btn-small" onclick="removeThisTag(this);"><i class="icon-remove"></i></button>' +
+            '</span>');
+        $('#input_{{ id }}').val('');
+        $('#{{ id }}_autocmp').html('');
+        $('#{{ id }} .tags-selected').show();
+    }
+    
+    function removeThisTag(obj){
+        $(obj).parent().remove();
+        if($('#{{ id }} .tags-selected').children().length == 0){
+            $('#{{ id }} .tags-selected').hide();
+        }
+    }
+    $('#input_{{ id }}').keyup(function(){
+        var url = '{{ path('wg_ajax_search_tags') }}';
+        var srcVal = $(this).val();
+        if(srcVal.length == 0){
+            $('#{{ id }}_autocmp').html('');
+        }else{
+            $.ajax({
+                url: url,
+                data: { search: srcVal },
+                abortOnRetry: true,
+                beforeSend: function(){
+                    $('#{{ id }}_autocmp').html('<img src="{{ asset('assets/img/loading.gif') }}" />');
+                },
+                success: function(data){
+                    $('#{{ id }}_autocmp').html(data);
+                }
+            });
+        }
+    });
+</script>
+{% endblock %}
+    
+{% block form_errors %}
+{% spaceless %}
+    {% if errors|length > 0 %}
+    <ul class="unstyled">
+        {% for error in errors %}
+            <li class="text-error">{{
+                error.messagePluralization is null
+                    ? error.messageTemplate|trans(error.messageParameters, 'validators')
+                    : error.messageTemplate|transchoice(error.messagePluralization, error.messageParameters, 'validators')
+            }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+{% endspaceless %}
+{% endblock form_errors %}

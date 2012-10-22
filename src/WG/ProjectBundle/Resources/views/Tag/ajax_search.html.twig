@@ -1,0 +1,10 @@
+<div>
+    {% for tag in tags %}
+        <a href="#" class="btn" onclick="addThisTag('{{ tag.title }}', {{ tag.id }});"><i class="icon-tag"></i> {{ tag.title }}</a>
+    {% endfor %}
+</div>
+{% if unknown == true and search|length > 0 %}
+    <div class="tag-ajax-new">
+        Créer un nouveau tag : <a href="#" class="btn" onclick="addThisTag('{{ search }}', 0);"><i class="icon-tag"></i> {{ search }}</a>
+    </div>    
+{% endif %}

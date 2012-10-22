@@ -1,0 +1,43 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+<h3>Fichiers</h3>
+<a class="btn" href="{{ path('wg_file_upload') }}"><i class="icon-plus"></i> Ajouter un fichier</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Tags</th>
+            <th class="datetime">Modifié le</th>
+            <th class="options">Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for file in files %}
+            <tr>
+                <td>
+                    <a href="{{ path('wg_files_show', {id: file.id }) }}" class="td-link">
+                        {% if file.isImage() == true %}
+                            <img src="{{ asset(file.webPath|imageCroper(25,25)) }}" />
+                        {% endif %}
+                        {{ file.name }}
+                    </a>
+                </td>
+                <td>
+                    {% for tag in file.tags %}
+                        <a href="{{ path('wg_activities', {tag: tag.id} ) }}" class="btn btn-mini tag" >{{ tag.title }}</a>
+                    {% endfor %}
+                </td>
+                <td>{{ file.editedAt|date('d/m/Y H:i') }}</td>
+                <td>
+                    <a class="btn btn-small" href="{{ path('wg_files_show', {id: file.id } ) }}"><i class="icon-eye-open"></i></a>
+                    <a class="btn btn-small" href="{{ asset(file.webPath) }}"><i class="icon-download-alt"></i></a>
+                    {% if file.author.id == app.user.id %}
+                        <a class="btn btn-small" href="{{ path('wg_file_remove', {id: file.id }) }}"><i class="icon-trash"></i></a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

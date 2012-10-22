@@ -1,0 +1,15 @@
+parameters:
+#    wg_dashboard.example.class: WG\DashboardBundle\Example
+
+services:
+    wg.twig.wg_ext:
+        class: WG\DashboardBundle\Twig\WorkGroupExtension
+        arguments:
+            - "@service_container"
+        tags: [{ name: twig.extension }]
+    wg.twig.page_ext:
+        class: WG\DashboardBundle\Twig\PageExtension
+        arguments:
+            - "@service_container"
+        tags: [{ name: twig.extension }]
+        

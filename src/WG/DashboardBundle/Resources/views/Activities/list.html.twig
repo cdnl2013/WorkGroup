@@ -1,0 +1,51 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+    {% include "WGDashboardBundle:Activities:list_content.html.twig" %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+
+        checkCountTags();
+
+        function addSessionTag(id){
+            var url = '{{ path('wg_ajax_add_session_tag') }}';
+            $.ajax({
+                url: url,
+                data: { id: id },
+                beforeSend: function(){
+                    $('#body h3').append('<img class="loading" src="{{ asset('assets/img/loading.gif') }}" />');
+                },
+                success: function(data){
+                    $('#body').html(data);
+                    checkCountTags();
+                }
+            });
+        }
+
+        function removeSessionTag(id){
+            var url = '{{ path('wg_ajax_remove_session_tag') }}';
+            $.ajax({
+                url: url,
+                data: { id: id },
+                beforeSend: function(){
+                    $('#body h3').append('<img class="loading" src="{{ asset('assets/img/loading.gif') }}" />');
+                },
+                success: function(data){
+                    $('#body').html(data);
+                    checkCountTags();
+                }
+            });
+        }
+
+        function checkCountTags(){
+            if($('.tags-selected').children().length == 0){
+                $('.tags-selected').hide();
+            }else{
+                $('.tags-selected').show();
+            }
+        }
+    </script>
+{% endblock %}

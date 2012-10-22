@@ -1,0 +1,94 @@
+/* 
+    Document   : style
+    Created on : 12 oct. 2012, 14:29:11
+    Author     : Tseho
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+#wall{
+    border: 1px solid #868686;
+    min-width: 425px !important;
+}
+
+#wall iframe{
+    height: 300px;
+}
+
+#wall iframe #timesliderlink{
+    display: none !important;
+}
+
+.tags-selected .btn-group{
+    float: left;
+}
+
+.tags-selected{
+    background-color: #faf2cc;
+    border: 1px dashed #fbb450;
+    padding: 4px;
+    margin-bottom: 10px;
+    min-height: 26px;
+}
+
+.tag-ajax-new{
+    margin: 10px 0px;
+}
+
+#register-btns{
+    margin-top: 10px;
+}
+
+#form_tags_autocmp{
+    margin-bottom: 10px;
+}
+
+.td-link, .td-link:hover{
+    display: block;
+    text-decoration: none;
+}
+
+th.datetime{
+    width: 120px;
+}
+
+th.type{
+    width: 15px;
+}
+
+th.options{
+    width: 115px;
+}
+
+.file-header h3, .file-header .btn-download{
+    display: inline-block;
+}
+
+.file-header .btn{
+    margin-left: 10px;
+}
+
+.file-container{
+    margin-bottom: 20px;
+}
+
+.file-tags{
+    margin-bottom: 10px;
+}
+
+.file-error{
+    text-align: center;
+    margin-top: 20px;
+}
+
+.loading{
+    height: 25px;
+    margin-left: 10px;
+    margin-top: 8px;
+    vertical-align: top;
+    width: 25px;
+}

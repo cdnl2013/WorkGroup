@@ -1,0 +1,15 @@
+{% extends "::base.html.twig" %}
+
+{% block menu %}
+    <li><a href="{{ path('fos_user_security_login') }}">Connexion</a></li>
+    <li class="active"><a href="{{ path('fos_user_registration_register') }}">Inscription</a></li>
+{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="span4 offset4">
+    <h2>Inscription</h2>
+    {% include "FOSUserBundle:Registration:register_content.html.twig" %}
+    </div>
+</div>
+{% endblock body %}

@@ -1,0 +1,28 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+    <div class="file-header">
+        <h3>{{ file.name }}</h3>
+        <span>Posté par {{ file.author.username }} le {{ file.createdAt|date('d/m/Y à H:i') }}</span>
+        <a class="btn" href="{{ path('wg_files_add_tags', {id: file.id }) }}"><i class="icon"></i> Ajouter des tags</a>
+        <a class="btn btn-download" href="{{ asset(file.webPath) }}"><i class="icon-download-alt"></i> Télécharger</a>
+    </div>
+    {% if file.tags|length > 0 %}
+        <div class="file-tags">
+            Tags :
+            {% for tag in file.tags %}
+                <a href="{{ path('wg_activities', {tag: tag.id} ) }}" class="btn btn-mini tag" ><i class="icon-tag"></i> {{ tag.title }}</a>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <div class="file-container">
+        {% if file.isImage() == true %}
+            {% set rendered = true %}
+            <img src="{{ asset(file.webPath) }}" />
+        {% endif %}
+            
+        {% if rendered is not defined %}
+            <div class="file-error">Le format du fichier ne permet pas d'afficher un aperçu</div>
+        {% endif %}
+    </div>
+{% endblock %}

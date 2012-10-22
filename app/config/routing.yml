@@ -1,0 +1,22 @@
+wg_dashboard:
+    resource: "@WGDashboardBundle/Resources/config/routing.yml"
+    prefix:   /
+
+wg_file:
+    resource: "@WGFileBundle/Resources/config/routing.yml"
+    prefix:   /files
+
+wg_project:
+    resource: "@WGProjectBundle/Resources/config/routing.yml"
+    prefix:   /
+    
+wg_user:
+    resource: "@WGUserBundle/Resources/config/routing.yml"
+    prefix:   /user
+    
+
+
+# Internal routing configuration to handle ESI
+#_internal:
+#    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+#    prefix:   /_internal

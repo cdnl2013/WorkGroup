@@ -1,0 +1,27 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th class="type">#</th>
+            <th>Nom</th>
+            <th class="datetime">Modifié le</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for activity in activities %}
+            <tr>
+                <td><i class="{% if activity.type =='file' %}icon-file{% endif %}"></i></td>
+                <td>
+                    {% if activity.type =='file' %}
+                        <a href="{{ path('wg_files_show', {id: activity.id }) }}" class="td-link">
+                            {% if activity.isImage() is defined and activity.isImage() == true %}
+                                <img src="{{ asset(activity.webPath|imageCroper(25,25)) }}" />
+                            {% endif %}
+                            {{ activity.Label }}
+                        </a>
+                    {% endif %}
+                </td>
+                <td>{{ activity.Date|date('d/m/Y H:i') }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

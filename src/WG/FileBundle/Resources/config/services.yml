@@ -1,0 +1,13 @@
+parameters:
+#    wg_file.example.class: WG\FileBundle\Example
+
+services:
+    wg.twig.image_ext:
+        class: WG\FileBundle\Twig\ImageExtension
+        tags: [{ name: twig.extension }]
+    wg.twig.file_ext:
+        class: WG\FileBundle\Twig\FileExtension
+        tags: [{ name: twig.extension }]  
+#    wg_file.example:
+#        class: %wg_file.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
